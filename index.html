@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dan's KosciMiler Crew Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: phone-first trail-signage page. Sticky section nav, one column, schedule table is the spine. */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --ink:#18221d; --muted:#5b6a62; --line:#d6ddd8;
+  --gum:#2f6b4f; --gum-soft:#e2eee7; --vis:#e8590c; --vis-soft:#fdebe0; --night:#2c3e66; --night-soft:#e5e9f3;
+  --warn:#b42318; --warn-soft:#fde7e5; --ok:#2f6b4f;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111814; --surface:#18221d; --ink:#e7eee9; --muted:#9db0a5; --line:#2c3a33;
+  --gum:#6fbf95; --gum-soft:#1d3329; --vis:#ff8a45; --vis-soft:#3a2416; --night:#9fb4e6; --night-soft:#1f2740;
+  --warn:#ff8b80; --warn-soft:#3a1d1b; --ok:#6fbf95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111814; --surface:#18221d; --ink:#e7eee9; --muted:#9db0a5; --line:#2c3a33;
+  --gum:#6fbf95; --gum-soft:#1d3329; --vis:#ff8a45; --vis-soft:#3a2416; --night:#9fb4e6; --night-soft:#1f2740;
+  --warn:#ff8b80; --warn-soft:#3a1d1b; --ok:#6fbf95; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3.2rem);font-weight:700;letter-spacing:.01em}
+h2{font-size:1.75rem;font-weight:700;margin-bottom:.4rem}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:.4rem 0;max-width:68ch}
+a{color:var(--gum);font-weight:600}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--vis);outline-offset:2px}
+.mono,.t{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;color:var(--vis);font-weight:600}
+header.hero{display:grid;gap:12px;padding-bottom:18px;border-bottom:3px solid var(--vis)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--muted)}
+.facts b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
+.status{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--vis);padding:12px 14px;border-radius:6px}
+.status strong{font-family:var(--f-display);font-size:1.25rem}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.sec{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:14px 0 6px;padding:8px 0;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav.sec a{display:inline-block;font-family:var(--f-display);font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);text-decoration:none;padding:6px 10px;border-radius:4px}
+nav.sec a:hover{background:var(--gum-soft)}
+section{padding-top:26px;scroll-margin-top:60px}
+.lede{color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.seg button{font:600 .95rem var(--f-body);border:0;background:none;color:var(--ink);padding:8px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--gum);color:var(--surface)}
+.btn{font:600 .9rem var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 11px;border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--gum)}
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.95rem}
+th{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;font-size:.85rem;color:var(--muted);font-weight:600;background:var(--surface);position:sticky;top:0}
+tr.crew td:first-child{border-left:5px solid var(--gum)}
+tr.nocrew td:first-child{border-left:5px solid var(--line)}
+tr.joel td:first-child{border-left:5px solid var(--vis)}
+tr.next{background:var(--vis-soft)}
+td.eta{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.eta small{display:block;color:var(--muted);font-family:var(--f-body)}
+.chip{display:inline-block;font-size:.78rem;font-weight:600;padding:1px 7px;border-radius:999px;margin:1px 4px 1px 0;white-space:nowrap}
+.c-crew{background:var(--gum-soft);color:var(--gum)}
+.c-no{background:var(--line);color:var(--muted)}
+.c-shuttle{background:var(--night-soft);color:var(--night)}
+.c-pacer{background:var(--vis-soft);color:var(--vis)}
+.c-night{background:var(--night-soft);color:var(--night)}
+.buf-ok{color:var(--ok)} .buf-tight{color:var(--warn);font-weight:600}
+.log{display:flex;gap:6px;align-items:center;margin-top:4px}
+.log input{font:500 .85rem var(--f-mono);width:92px;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.note{font-size:.9rem;color:var(--muted)}
+.callout{background:var(--warn-soft);border:1px solid var(--warn);color:var(--ink);padding:12px 14px;border-radius:6px;margin:12px 0}
+.callout b{color:var(--warn)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid2>*{min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px}
+.panel h3{margin-bottom:6px}
+ul.check{list-style:none;padding:0;margin:6px 0}
+ul.check li{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px dashed var(--line)}
+ul.check li:last-child{border-bottom:0}
+ul.check input{margin-top:4px;accent-color:var(--gum);width:18px;height:18px;flex:none}
+ul.check label{cursor:pointer}
+ul.plain{padding-left:1.1rem;margin:6px 0}
+.stop{display:grid;grid-template-columns:120px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.stop:last-child{border-bottom:0}
+.stop .when{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.stop .when small{display:block;font-family:var(--f-body);color:var(--muted)}
+@media (max-width:560px){.stop{grid-template-columns:1fr}}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto}
+.mapbox svg{display:block;width:100%;min-width:560px;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.88rem;color:var(--muted);margin-top:6px}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:4px}
+.routine{list-style:none;padding:0;margin:8px 0;border-left:3px solid var(--night);}
+.routine li{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:7px 0 7px 12px}
+.routine .t{color:var(--night);font-weight:500}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+.stoptbl td:nth-child(2),.stoptbl td:nth-child(3){white-space:nowrap}
+.kpi{display:flex;flex-wrap:wrap;gap:6px 18px}
+</style>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">Ultra-Trail Kosciuszko · KosciMiler 2026</div>
+  <h1>Dan's KosciMiler Crew Guide</h1>
+  <div class="facts">
+    <span>Start <b>Fri 27 Nov 03:00</b> · Banjo Paterson Park, Jindabyne</span>
+    <span>Finish <b>Friday Flat, Thredbo</b></span>
+    <span><b>163.1 km</b> · <b>4,731 m</b> climb · limit <b>36 h</b></span>
+  </div>
+  <div class="status" aria-live="polite"><strong id="statusMain">Loading…</strong><span id="statusSub" class="note"></span></div>
+  <div class="facts">
+    <a href="https://live.utmb.world/kosciuszko/2026" target="_blank" rel="noopener">Live tracking</a>
+    <a href="https://kosciuszko.utmb.world/races/kosci-miler" target="_blank" rel="noopener">Official map + GPX</a>
+    <a href="https://apps.apple.com/us/app/ultra-trail-kosciuszko/id1642682573" target="_blank" rel="noopener">Kosci app (iPhone)</a>
+    <a href="https://play.google.com/store/apps/details?id=nz.netproject.kosci&amp;hl=en&amp;gl=US" target="_blank" rel="noopener">Kosci app (Android)</a>
+  </div>
+</header>
+
+<nav class="sec" aria-label="Sections">
+  <a href="#plan">Schedule</a><a href="#map">Map</a><a href="#crew">Crew stops</a><a href="#gear">Gear</a><a href="#food">Food</a><a href="#morning">Race morning</a><a href="#joel">Joel</a><a href="#rules">Rules</a>
+</nav>
+
+<section id="plan" aria-labelledby="h-plan">
+  <h2 id="h-plan">Schedule</h2>
+  <p class="lede">Estimates from Dan's Strava training. On race day, type his real arrival time at any checkpoint and the later times update to his actual pace (saved on this phone).</p>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Scenario">
+      <button type="button" data-sc="1" aria-pressed="true">Good day</button>
+      <button type="button" data-sc="1.1" aria-pressed="false">Steady (+10%)</button>
+      <button type="button" data-sc="1.25" aria-pressed="false">Tough (+25%)</button>
+    </div>
+    <button type="button" class="btn" id="clearLog">Clear logged times</button>
+  </div>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>Checkpoint</th><th>km</th><th>Pace to here</th><th>Arrive</th><th>Stop</th><th>Leave</th><th>Cut-off</th><th>Log arrival</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <p class="note">Pace is the average for the section, hiking included. Stop is the planned time at the aid station. Distances and cut-offs are from the 2026 time chart; cut-offs can move forward in bad weather. Dark from about 20:10 until about 05:45.</p>
+</section>
+
+<section id="map" aria-labelledby="h-map">
+  <h2 id="h-map">Course map</h2>
+  <p class="lede">Schematic with approximate positions. Use the official Map + GPX for the real trail.</p>
+  <div class="mapbox">
+    <svg viewBox="0 0 700 400" role="img" aria-labelledby="mapTitle">
+      <title id="mapTitle">Schematic course map from Jindabyne through Perisher, Charlotte Pass, Mt Kosciuszko, Guthega and back via Bullocks Flat to Thredbo</title>
+      <rect x="0" y="0" width="700" height="400" fill="var(--surface)"/>
+      <path d="M560 175 C600 160 650 170 680 185 L690 215 C640 230 600 225 560 205 Z" fill="var(--night-soft)" stroke="none"/>
+      <text x="655" y="224" text-anchor="middle" font-size="11" fill="var(--night)" font-family="var(--f-body)">Lake Jindabyne</text>
+      <polyline fill="none" stroke="var(--vis)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+        points="651,172 587,214 389,226 292,150 154,202 42,252 185,175 220,108 282,44 300,62 292,150 389,226 308,280 150,348 92,372 168,326"/>
+      <g font-family="var(--f-body)" font-size="12" fill="var(--ink)"><g id="mk"></g></g>
+      <text x="20" y="390" font-size="11" fill="var(--muted)" font-family="var(--f-body)">N ↑ · roughly 35 km east–west</text>
+    </svg>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--gum)"></span>Crew can help</span>
+    <span><span class="dot" style="background:var(--night)"></span>Crew by shuttle only</span>
+    <span><span class="dot" style="background:var(--muted)"></span>No crew</span>
+    <span><span class="dot" style="background:var(--vis)"></span>Joel joins</span>
+  </div>
+</section>
+
+<section id="crew" aria-labelledby="h-crew">
+  <h2 id="h-crew">Crew stops</h2>
+  <div class="callout"><b>Charlotte Pass is shuttle only.</b> No private cars past Perisher; the shuttle runs 06:00–19:00 Friday and online bookings closed 13 Nov. No ticket means skip CP3 and CP4, and Dan uses his drop bag.</div>
+  <p class="lede">One crew member helps at a time, within about 500 m of the checkpoint. Times follow the scenario chosen above.</p>
+  <div class="tablebox">
+    <table class="stoptbl">
+      <thead><tr><th>Stop</th><th>Arrive</th><th>Time there</th><th>Gear</th><th>Food</th></tr></thead>
+      <tbody id="stops"></tbody>
+    </table>
+  </div>
+  <p class="note">Drives: Jindabyne → Bullocks Flat about 25 min. Guthega Base Camp → Guthega Power Station about 30 min incl. a 5–10 min walk (gravel, limited parking). Keller Plaza: shuttle or 900 m walk from Friday Flat. Everyone needs a NSW Parks Pass.</p>
+</section>
+
+<section id="gear" aria-labelledby="h-gear">
+  <h2 id="h-gear">Gear</h2>
+  <div class="grid2">
+    <div class="panel"><h3>Mandatory: always in Dan's pack</h3><ul class="check" data-list="mand"></ul>
+      <p class="note">* Weather-dependent; pack them anyway. Missing kit at a spot check stops him until it's replaced.</p></div>
+    <div class="panel"><h3>Lights, vest and poles</h3><ul class="check" data-list="lights"></ul>
+      <p class="note">Vest over the pack with bib showing: start → CP1, and on roads and the finish area after 19:40. Simplest: on from Perisher (CP8) to the finish. Crew hands over the poles; Joel isn't allowed to carry gear for Dan.</p></div>
+    <div class="panel"><h3>Crew bag</h3><ul class="check" data-list="crewbag"></ul></div>
+  </div>
+</section>
+
+<section id="food" aria-labelledby="h-food">
+  <h2 id="h-food">Food: all vegan</h2>
+  <div class="kpi panel"><span><b>Every hour:</b> 500 ml Tailwind (2 scoops, 50 g) + 1 Pure gel (30 g) ≈ <b>80 g carbs</b></span><span class="note">Hand him a fresh Tailwind flask and 2–3 gels at every crew stop.</span></div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="panel"><h3>Morning: carbs</h3><p class="note">CP2–CP4</p>
+      <ul class="plain"><li>Naak waffles</li><li>Nutri-Grain</li><li>Banana bread (vegan)</li><li>Banana</li></ul></div>
+    <div class="panel"><h3>Afternoon: carbs + real food</h3><p class="note">Guthega CP5–CP7</p>
+      <ul class="plain"><li>Salted boiled potatoes</li><li>Half peanut butter and jam bagel</li><li>Naak waffles, Nutri-Grain</li></ul></div>
+    <div class="panel"><h3>Evening and night: bigger meals + protein</h3><p class="note">CP7 onward</p>
+      <ul class="plain"><li>Hot noodles or miso soup (vegan flavour)</li><li>Full peanut butter and jam bagel</li><li>Soy or pea-protein milk, 200–300 ml</li><li>Salted potatoes, flat Coke, ginger</li></ul></div>
+    <div class="panel"><h3>Caffeine and salt</h3>
+      <ul class="plain"><li>Caffeinated gel ~19:00, ~22:30, ~01:00 only if fading</li><li>Max ~300 mg overnight (Coke counts)</li><li>Salt capsule every 1–2 h if hot or off Tailwind</li><li>Stomach off: walk 20 min, flat Coke, salted potato</li></ul></div>
+  </div>
+</section>
+
+<section id="morning" aria-labelledby="h-morning">
+  <h2 id="h-morning">Race morning</h2>
+  <div class="grid2">
+    <div class="panel"><h3>Thursday 26 Nov</h3>
+      <ol class="routine">
+        <li><span class="t">day</span><span>Carb-load: rice, pasta, bread, potatoes, juice. Low fibre, no alcohol.</span></li>
+        <li><span class="t">16:00</span><span>Lay out kit and check the mandatory list. Charge headlamp, backup light, watch, phone.</span></li>
+        <li><span class="t">18:00</span><span>Early dinner: pasta or rice, tomato sauce, tofu. No beans or spice.</span></li>
+        <li><span class="t">19:00</span><span>Pack the vest. Mix Tailwind flasks. Alarms for 01:00.</span></li>
+        <li><span class="t">20:00</span><span>Lights out.</span></li>
+      </ol></div>
+    <div class="panel"><h3>Friday 27 Nov (race day)</h3>
+      <ol class="routine">
+        <li><span class="t">01:00</span><span>Wake up. Glass of water.</span></li>
+        <li><span class="t">01:10</span><span>Breakfast, 100–130 g carbs: 2 white bagels with jam and a banana. Coffee if normal.</span></li>
+        <li><span class="t">01:40</span><span>Dress: anti-chafe, taping, tattoo dressing if needed. Final kit check.</span></li>
+        <li><span class="t">02:00</span><span>Last solids. Sip 300–500 ml water or electrolyte. Toilet.</span></li>
+        <li><span class="t">02:15</span><span>Leave for Banjo Paterson Park (street parking).</span></li>
+        <li><span class="t">02:30</span><span>Drop finish bag near the start. Toilet.</span></li>
+        <li><span class="t">02:45</span><span>One gel. Vest and headlamp on. Watch on Trail Run, 145 bpm alert, GPS locked.</span></li>
+        <li><span class="t">03:00</span><span>Start. Under 130 bpm on flats, under 140 on climbs.</span></li>
+      </ol></div>
+  </div>
+</section>
+
+<section id="joel" aria-labelledby="h-joel">
+  <h2 id="h-joel">Joel: last 31 km</h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Joins at CP9 Bullocks Flat II, 132.2 km</h3>
+      <p>Good day <b class="mono" id="joelEta"></b> · steady <span class="mono" id="joelEta2"></span> · tough <span class="mono" id="joelEta3"></span>. Be ready 45 min early and watch the tracker. Backup pickup: CP11 Keller Plaza.</p>
+      <p class="note">Crew gives Dan his poles here (or at Keller Plaza) for the climb over the Thredbo ski area.</p>
+    </div>
+    <div class="panel"><h3>Joel's checklist</h3><ul class="check" data-list="joel"></ul></div>
+  </div>
+</section>
+
+<section id="rules" aria-labelledby="h-rules">
+  <h2 id="h-rules">Crew rules</h2>
+  <ul class="plain">
+    <li>Help only at crew checkpoints, one person at a time. No help or running with Dan in between.</li>
+    <li>No crew at CP10 Ngarigo, and no parking on the Alpine Way.</li>
+    <li>Don't eat checkpoint food. Bring your own cup: there are none.</li>
+    <li>No drop bag at a checkpoint where crew will be.</li>
+    <li>Crew breaches can get Dan penalised or disqualified. Follow marshals.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Sources: <a href="https://kosciuszko.utmb.world/races/kosci-miler" target="_blank" rel="noopener">KosciMiler race page</a> · <a href="https://multidayrunning.com/events/kosci-miler" target="_blank" rel="noopener">2026 time chart (Multiday Running)</a> · <a href="https://kosciuszko.utmb.world/runners/on-course-info" target="_blank" rel="noopener">On-course info</a> · <a href="https://kosciuszko.utmb.world/runners/mandatory-gear" target="_blank" rel="noopener">Mandatory gear</a> · <a href="https://kosciuszko.utmb.world/get-involved/spectators" target="_blank" rel="noopener">Spectators &amp; crew</a> · <a href="https://kosciuszko.utmb.world/runners/transport-parking" target="_blank" rel="noopener">Transport &amp; parking</a>. Times and paces are estimates from Dan's training, not official predictions.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var START=new Date(2026,10,27,3,0,0);
+  // m = good-day elapsed minutes on arrival; s = planned stop minutes
+  var CPS=[
+    {id:"cp1",n:"CP1 Gaden Trout Hatchery",km:12.6,m:89,s:1,cut:[27,5,25],crew:"no"},
+    {id:"cp2",n:"CP2 Bullocks Flat I",km:32.0,m:227,s:3,cut:[27,9,35],crew:"yes"},
+    {id:"wp",n:"Perisher water point",km:44.0,m:312,s:1,cut:null,crew:"no"},
+    {id:"cp3",n:"CP3 Charlotte Pass Resort",km:57.0,m:411,s:5,cut:[27,15,5],crew:"shuttle"},
+    {id:"sum",n:"Mt Kosciuszko summit",km:68.3,m:503,s:0,cut:null,crew:"no"},
+    {id:"cp4",n:"CP4 Charlotte Pass Lookout",km:81.1,m:605,s:3,cut:[27,20,5],crew:"shuttle"},
+    {id:"cp5",n:"CP5 Guthega Base Camp",km:90.9,m:685,s:5,cut:[27,22,5],crew:"yes"},
+    {id:"cp6",n:"CP6 Guthega Power Station I",km:99.4,m:753,s:3,cut:[27,23,50],crew:"yes"},
+    {id:"cp7",n:"CP7 Guthega Power Station II",km:109.0,m:835,s:8,cut:[28,2,10],crew:"yes"},
+    {id:"cp8",n:"CP8 Perisher Ski Tube",km:119.1,m:927,s:10,cut:[28,4,20],crew:"yes"},
+    {id:"cp9",n:"CP9 Bullocks Flat II",km:132.2,m:1051,s:10,cut:[28,6,50],crew:"yes",joel:1},
+    {id:"cp10",n:"CP10 Ngarigo Campground",km:140.3,m:1132,s:2,cut:[28,8,40],crew:"no"},
+    {id:"cp11",n:"CP11 Keller Plaza, Thredbo",km:151.4,m:1244,s:6,cut:[28,11,15],crew:"yes"},
+    {id:"cp12",n:"CP12 Black Sallees",km:157.8,m:1312,s:2,cut:null,crew:"yes"},
+    {id:"fin",n:"Finish, Friday Flat",km:163.1,m:1370,s:0,cut:[28,15,10],crew:"yes"}
+  ];
+  var MAPPTS={cp1:[587,214,10,-8,"start"],cp2:[389,226,10,-10,"start"],cp3:[154,202,-10,-6,"end"],sum:[42,252,10,-8,"start"],cp4:[185,175,10,-6,"start"],cp5:[220,108,10,-8,"start"],cp6:[282,44,10,-8,"start"],cp7:[300,62,12,6,"start"],cp8:[292,150,10,-8,"start"],cp9:[389,226,12,22,"start"],cp10:[308,280,10,-8,"start"],cp11:[150,348,10,16,"start"],cp12:[92,372,-10,4,"end"],fin:[168,326,10,-6,"start"]};
+  var STOPS=[
+    {id:"cp2",t:"CP2 Bullocks Flat I",gear:"Vest off (carried). Cap, sunglasses, sunscreen. Warm layers into pack.",food:"Tailwind, 3 gels, Naak waffle or banana bread."},
+    {id:"cp3",t:"CP3 Charlotte Pass Resort (shuttle)",gear:"Summit next, exposed: jacket, gloves, beanie in pack. Sunscreen.",food:"Tailwind, 3 gels, banana, Nutri-Grain."},
+    {id:"cp5",t:"CP5 Guthega Base Camp",gear:"Dry socks and lube if feet are wet.",food:"Tailwind, 2 gels, potatoes or half PB&J bagel."},
+    {id:"cp6",t:"CP6 Guthega Power Station I",gear:"Quick top-up.",food:"Tailwind, 2 gels, Naak waffle."},
+    {id:"cp7",t:"CP7 Guthega Power Station II",gear:"Night prep: charged headlamp, backup light, warm top, vest ready.",food:"Hot noodles or soup, half PB&J bagel. Tailwind, 2 gels."},
+    {id:"cp8",t:"CP8 Perisher Ski Tube",gear:"Night kit on: headlamp, vest, beanie, gloves, thermal or fleece.",food:"Caffeinated gel, soy/pea milk, potatoes. Tailwind, 2 gels."},
+    {id:"cp9",t:"CP9 Bullocks Flat II · Joel joins",gear:"Poles to Dan. Check headlamp battery and warm layers.",food:"Noodles or soup, PB&J bagel, flat Coke, caffeinated gel for ~22:30. Tailwind, 2 gels."},
+    {id:"cp11",t:"CP11 Keller Plaza",gear:"Poles here if missed at CP9. Fresh battery, warm layer, vest on.",food:"Flat Coke, potatoes, 2 gels. Caffeinated gel only if fading."},
+    {id:"fin",t:"Finish",gear:"Warm dry clothes, down jacket, slides.",food:"Protein shake, bagel or noodles, fluids."}
+  ];
+  var LISTS={
+    mand:["Thermal top (long sleeve)","Thermal pants (long leg)","Thermal gloves","Beanie / Buff","Waterproof jacket","Waterproof pants *","100-weight fleece *","Padded-palm gloves","Phone, whistle, bivvy bag","Compression bandage, emergency card","2 L water capacity","2 food bars, rubbish ziplock, dry bag","Race number, timing tag","Own cup"],
+    lights:["Headlamp (charged)","Backup light","Spare battery or headlamp (crew)","Hi-vis vest","Poles: to Dan at CP9 or CP11"],
+    crewbag:["Spare shoes, 3 pairs socks","Anti-chafe and blister kit","Sunscreen, sunglasses, cap","Thermos of hot water","Down jacket for the finish","Camp chair, crew head torch","Power bank and cables","NSW Parks Pass"],
+    joel:["Registered as pacer by 26 Nov","Yellow bib from check-in","Own full mandatory gear","Own food and water","Transport to Bullocks Flat","Tracker open on phone"]
+  };
+  var store={get:function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+  var scenario=1,logs=store.get("dkm-logs")||{};
+  function addMin(d,m){return new Date(d.getTime()+m*60000)}
+  function fmt(d){var days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];return days[d.getDay()]+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+  function hm(m){m=Math.round(m);var h=Math.floor(Math.abs(m)/60),mm=Math.abs(m)%60;return (m<0?"−":"")+h+"h "+String(mm).padStart(2,"0")}
+  function pace(min){var s=Math.round(min*60);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+  function cutDate(c){return c?new Date(2026,10,c[0],c[1],c[2]):null}
+  function parseLog(v,cp){var m=/^(\d{1,2}):(\d{2})$/.exec(v||"");if(!m)return null;var h=+m[1],mi=+m[2];if(h>23||mi>59)return null;
+    var d=new Date(2026,10,27,h,mi);if(d<START)d=new Date(2026,10,28,h,mi);return d}
+  function factorBefore(i){var f=scenario;for(var j=0;j<i;j++){var p=CPS[j];if(logs[p.id]){var a=parseLog(logs[p.id],p);if(a)f=((a-START)/60000)/p.m}}return f}
+  function arrive(i){var cp=CPS[i];if(logs[cp.id]){var a=parseLog(logs[cp.id],cp);if(a)return {d:a,actual:true}}return {d:addMin(START,cp.m*factorBefore(i)),actual:false}}
+  function render(){
+    var tb=document.getElementById("tbody"),html="",now=new Date(),nextIdx=-1;
+    CPS.forEach(function(cp,i){
+      var a=arrive(i),f=factorBefore(i),cd=cutDate(cp.cut),buf=cd?(cd-a.d)/60000:null;
+      var prevM=i?CPS[i-1].m+CPS[i-1].s:0,prevKm=i?CPS[i-1].km:0,p=((cp.m-prevM)*f)/(cp.km-prevKm);
+      var lv=addMin(a.d,cp.s),dark=(a.d.getHours()>=20||a.d.getHours()<6);
+      if(nextIdx<0&&!a.actual&&a.d>now)nextIdx=i;
+      var cls=cp.joel?"joel":(cp.crew==="no"?"nocrew":"crew");
+      var tag=cp.crew==="yes"?'<span class="chip c-crew">Crew</span>':cp.crew==="shuttle"?'<span class="chip c-shuttle">Crew via shuttle</span>':'<span class="chip c-no">No crew</span>';
+      if(cp.joel)tag+='<span class="chip c-pacer">Joel + poles</span>';
+      if(dark)tag+='<span class="chip c-night">Dark</span>';
+      html+='<tr class="'+cls+'" id="row-'+cp.id+'"><td><strong>'+cp.n+'</strong><br>'+tag+'</td><td class="t">'+cp.km.toFixed(1)+'</td>'+
+        '<td class="t">'+pace(p)+'/km</td>'+
+        '<td class="eta">'+fmt(a.d)+'<small>'+(a.actual?"logged":hm((a.d-START)/60000)+" elapsed")+'</small></td>'+
+        '<td class="t">'+(cp.s?cp.s+" min":"—")+'</td>'+
+        '<td class="eta">'+(cp.s?fmt(lv):"—")+'</td>'+
+        '<td>'+(cd?'<span class="t">'+fmt(cd)+'</span><br><span class="'+(buf<90?"buf-tight":"buf-ok")+'">'+hm(buf)+' spare</span>':'<span class="note">none</span>')+'</td>'+
+        '<td><div class="log"><label class="note" for="log-'+cp.id+'">HH:MM</label><input id="log-'+cp.id+'" data-cp="'+cp.id+'" inputmode="numeric" placeholder="--:--" value="'+(logs[cp.id]||"")+'"></div></td></tr>';
+    });
+    tb.innerHTML=html;
+    if(nextIdx>=0){var r=document.getElementById("row-"+CPS[nextIdx].id);if(r)r.classList.add("next")}
+    tb.querySelectorAll("input[data-cp]").forEach(function(inp){inp.addEventListener("change",function(){var v=inp.value.trim();if(v===""){delete logs[inp.dataset.cp]}else if(/^\d{1,2}:\d{2}$/.test(v)){logs[inp.dataset.cp]=v}else{inp.value="";return}store.set("dkm-logs",logs);renderAll()})});
+    var sm=document.getElementById("statusMain"),ss=document.getElementById("statusSub");
+    if(now<START){var mins=(START-now)/60000,d=Math.floor(mins/1440);sm.textContent="Race starts in "+(d>0?d+" d ":"")+hm(mins%1440);ss.textContent="Good-day finish ≈ "+fmt(addMin(START,1370*scenario))+" ("+hm(1370*scenario)+")";}
+    else if(nextIdx>=0){sm.textContent="Next: "+CPS[nextIdx].n+" ≈ "+fmt(arrive(nextIdx).d);ss.textContent="Estimate from the scenario and logged times. Check the live tracker.";}
+    else{sm.textContent="Expected finish has passed";ss.textContent="Check the live tracker.";}
+    var j=CPS.findIndex(function(c){return c.joel});
+    document.getElementById("joelEta").textContent=fmt(arrive(j).d);
+    document.getElementById("joelEta2").textContent=fmt(addMin(START,CPS[j].m*1.1));
+    document.getElementById("joelEta3").textContent=fmt(addMin(START,CPS[j].m*1.25));
+  }
+  function renderStops(){
+    document.getElementById("stops").innerHTML=STOPS.map(function(s){var i=CPS.findIndex(function(c){return c.id===s.id}),cp=CPS[i];
+      return '<tr class="'+(cp.joel?"joel":"crew")+'"><td><strong>'+s.t+'</strong></td><td class="t">'+fmt(arrive(i).d)+'</td><td class="t">'+(cp.s?cp.s+" min":"—")+'</td><td>'+s.gear+'</td><td>'+s.food+'</td></tr>'}).join("");
+  }
+  function renderMap(){
+    var g=document.getElementById("mk"),h="";
+    CPS.forEach(function(cp){var p=MAPPTS[cp.id];if(!p)return;
+      var col=cp.joel?"var(--vis)":cp.crew==="yes"?"var(--gum)":cp.crew==="shuttle"?"var(--night)":"var(--muted)";
+      h+=cp.joel?'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="11" fill="none" stroke="'+col+'" stroke-width="3"/>':'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="'+col+'" stroke="var(--surface)" stroke-width="2"/>';
+      var short=cp.n.replace(/^(CP\d+)\s.*$/,"$1");if(cp.id==="sum")short="Summit";if(cp.id==="fin")short="Finish";
+      h+='<text x="'+(p[0]+p[2])+'" y="'+(p[1]+p[3])+'" text-anchor="'+p[4]+'" font-weight="600">'+short+'</text>';});
+    [["Jindabyne · start",641,158,"end"],["Perisher",302,168,"start"],["Charlotte Pass",130,226,"end"],["Mt Kosciuszko 2,228 m",52,274,"start"],["Guthega",208,104,"end"],["Thredbo",140,382,"start"],["Bullocks Flat",360,250,"end"]].forEach(function(p){h+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="'+p[3]+'" fill="var(--muted)" font-size="11">'+p[0]+'</text>'});
+    h+='<circle cx="651" cy="172" r="7" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/>';
+    g.innerHTML=h;
+  }
+  function renderLists(){
+    var saved=store.get("dkm-checks")||{};
+    document.querySelectorAll("ul.check[data-list]").forEach(function(ul){var key=ul.dataset.list;ul.innerHTML=(LISTS[key]||[]).map(function(t,i){var id="chk-"+key+"-"+i;return '<li><input type="checkbox" id="'+id+'"'+(saved[id]?" checked":"")+'><label for="'+id+'">'+t+'</label></li>'}).join("")});
+    document.addEventListener("change",function(e){if(e.target.matches&&e.target.matches("ul.check input")){saved[e.target.id]=e.target.checked;store.set("dkm-checks",saved)}});
+  }
+  function renderAll(){render();renderStops()}
+  document.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){scenario=+b.dataset.sc;document.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});renderAll()})});
+  document.getElementById("clearLog").addEventListener("click",function(){logs={};store.set("dkm-logs",logs);renderAll()});
+  renderLists();renderMap();renderAll();setInterval(render,60000);
+})();
+</script>
+
+</body>
+</html>
