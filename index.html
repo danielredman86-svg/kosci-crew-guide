@@ -142,11 +142,11 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
   </div>
   <div class="tablebox">
     <table>
-      <thead><tr><th>Checkpoint</th><th>km</th><th>Pace to here</th><th>Arrive</th><th>Stop</th><th>Leave</th><th>Cut-off</th><th>Log arrival</th></tr></thead>
+      <thead><tr><th>Checkpoint</th><th>km</th><th>Pace /km<br>section · overall</th><th>Arrive</th><th>Stop</th><th>Leave</th><th>Cut-off</th><th>Log arrival</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
-  <p class="note">Pace is the average for the section, hiking included. Stop is the planned time at the aid station. Distances and cut-offs are from the 2026 time chart; cut-offs can move forward in bad weather. Dark from about 20:10 until about 05:45.</p>
+  <p class="note">Section pace covers the leg into that checkpoint, hiking included. Overall avg is the pace from the start, stops included. Stop is the planned time at the aid station. Distances and cut-offs are from the 2026 time chart; cut-offs can move forward in bad weather. Dark from about 20:10 until about 05:45.</p>
 </section>
 
 <section id="map" aria-labelledby="h-map">
@@ -326,7 +326,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
       if(cp.joel)tag+='<span class="chip c-pacer">Joel + poles</span>';
       if(dark)tag+='<span class="chip c-night">Dark</span>';
       html+='<tr class="'+cls+'" id="row-'+cp.id+'"><td><strong>'+cp.n+'</strong><br>'+tag+'</td><td class="t">'+cp.km.toFixed(1)+'</td>'+
-        '<td class="t">'+pace(p)+'/km</td>'+
+        '<td class="t">'+pace(p)+'<small style="display:block;color:var(--muted)">avg '+pace(((a.d-START)/60000)/cp.km)+'</small></td>'+
         '<td class="eta">'+fmt(a.d)+'<small>'+(a.actual?"logged":hm((a.d-START)/60000)+" elapsed")+'</small></td>'+
         '<td class="t">'+(cp.s?cp.s+" min":"—")+'</td>'+
         '<td class="eta">'+(cp.s?fmt(lv):"—")+'</td>'+
