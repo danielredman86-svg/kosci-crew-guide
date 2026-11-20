@@ -198,7 +198,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
 
 <section id="food" aria-labelledby="h-food">
   <h2 id="h-food">Food: all vegan</h2>
-  <div class="kpi panel"><span><b>Every hour:</b> 500 ml Tailwind (2 scoops, 50 g) + 1 Pure gel (30 g) ≈ <b>80 g carbs</b></span><span class="note">Hand him a fresh Tailwind flask and 2–3 gels at every crew stop. Pack snacks bite-sized in one labelled ziplock per stop, with something salty and something sweet each time.</span></div>
+  <div class="kpi panel"><span><b>Drinks, one flask an hour:</b> Tailwind to CP5 (2 scoops, 50 g) → Moor CP5–CP8 (40 g, 500 mg sodium) → Näak Ultra CP8–finish (57 g, 6 g protein). Plus gels (30 g) and real food for ≈ <b>80 g carbs/h</b>.</span><span class="note">Pre-bag single drink serves labelled by stop. Mix with the water amount on each bag. Moor is the backup if Näak doesn't sit well. Pack snacks bite-sized in one labelled ziplock per stop, with something salty and something sweet each time.</span></div>
   <div class="grid2" style="margin-top:14px">
     <div class="panel"><h3>Morning: carbs</h3><p class="note">CP2–CP4</p>
       <ul class="plain"><li>Naak waffles, Nutri-Grain</li><li>Banana bread (vegan), banana</li><li>Medjool dates, some with peanut butter</li><li>Jam pinwheels on a soft tortilla</li><li>Vegan lollies (no gelatine)</li></ul></div>
@@ -207,7 +207,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
     <div class="panel"><h3>Evening and night: bigger meals + protein</h3><p class="note">CP7 onward</p>
       <ul class="plain"><li>Hot noodles or miso soup (vegan flavour)</li><li>Plain pasta with salt and olive oil</li><li>Mashed potato from flakes, salted</li><li>Rice with soy sauce</li><li>Soy hot chocolate from a thermos</li><li>Full peanut butter and jam bagel</li><li>Soy or pea-protein milk, 200–300 ml</li></ul></div>
     <div class="panel"><h3>Caffeine and salt</h3>
-      <ul class="plain"><li>Caffeinated gel ~19:00, ~22:30, ~01:00 only if fading</li><li>Max ~300 mg overnight (Coke counts)</li><li>Salt capsule every 1–2 h if hot or off Tailwind</li><li>Stomach off: walk 20 min; flat Coke, ginger, watermelon, salted crackers</li></ul></div>
+      <ul class="plain"><li>Caffeinated gel ~19:00, ~22:30, ~01:00 only if fading</li><li>Max ~300 mg overnight (Coke counts)</li><li>Salt capsule every 1–2 h if hot, especially on Näak (lower sodium)</li><li>Stomach off: walk 20 min; flat Coke, ginger, watermelon, salted crackers</li></ul></div>
   </div>
 </section>
 
@@ -287,14 +287,14 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-si
   ];
   var MAPPTS={cp1:[587,214,10,-8,"start"],cp2:[389,226,10,-10,"start"],cp3:[154,202,-10,-6,"end"],sum:[42,252,10,-8,"start"],cp4:[185,175,10,-6,"start"],cp5:[220,108,10,-8,"start"],cp6:[282,44,10,-8,"start"],cp7:[300,62,12,6,"start"],cp8:[292,150,10,-8,"start"],cp9:[389,226,12,22,"start"],cp10:[308,280,10,-8,"start"],cp11:[150,348,10,16,"start"],cp12:[92,372,-10,4,"end"],fin:[168,326,10,-6,"start"]};
   var STOPS=[
-    {id:"cp2",t:"CP2 Bullocks Flat I",gear:"Vest off (carried). Cap, sunglasses, sunscreen. Warm layers into pack.",food:"Tailwind, 3 gels, Naak waffle or banana bread."},
-    {id:"cp3",t:"CP3 Charlotte Pass Resort (shuttle)",gear:"Summit next, exposed: jacket, gloves, beanie in pack. Sunscreen.",food:"Tailwind, 3 gels, banana, Nutri-Grain."},
-    {id:"cp5",t:"CP5 Guthega Base Camp",gear:"Dry socks and lube if feet are wet.",food:"Tailwind, 2 gels, potatoes or half PB&J bagel."},
-    {id:"cp6",t:"CP6 Guthega Power Station I",gear:"Quick top-up.",food:"Tailwind, 2 gels, Naak waffle."},
-    {id:"cp7",t:"CP7 Guthega Power Station II",gear:"Night prep: charged headlamp, backup light, warm top, vest ready.",food:"Hot noodles or soup, half PB&J bagel. Tailwind, 2 gels."},
-    {id:"cp8",t:"CP8 Perisher Ski Tube",gear:"Night kit on: headlamp, vest, beanie, gloves, thermal or fleece.",food:"Caffeinated gel, soy/pea milk, potatoes. Tailwind, 2 gels."},
-    {id:"cp9",t:"CP9 Bullocks Flat II · Joel joins",gear:"Poles to Dan. Check headlamp battery and warm layers.",food:"Noodles or soup, PB&J bagel, flat Coke, caffeinated gel for ~22:30. Tailwind, 2 gels."},
-    {id:"cp11",t:"CP11 Keller Plaza",gear:"Poles here if missed at CP9. Fresh battery, warm layer, vest on.",food:"Flat Coke, potatoes, 2 gels. Caffeinated gel only if fading."},
+    {id:"cp2",t:"CP2 Bullocks Flat I",gear:"Vest off (carried). Cap, sunglasses, sunscreen. Warm layers into pack.",food:"Tailwind (3 scoop-bags), 2 gels, Naak waffle or banana bread."},
+    {id:"cp3",t:"CP3 Charlotte Pass Resort (shuttle)",gear:"Summit next, exposed: jacket, gloves, beanie in pack. Sunscreen.",food:"Tailwind (5 scoop-bags), 2 gels, Naak waffle, banana bread, banana, dates."},
+    {id:"cp5",t:"CP5 Guthega Base Camp",gear:"Dry socks and lube if feet are wet.",food:"Switch to Moor (1 serve). Salted potatoes, half PB&J bagel."},
+    {id:"cp6",t:"CP6 Guthega Power Station I",gear:"Quick top-up.",food:"Moor (2 serves), 1 gel, Vegemite wrap or pretzels."},
+    {id:"cp7",t:"CP7 Guthega Power Station II",gear:"Night prep: charged headlamp, backup light, warm top, vest ready.",food:"Moor (2 serves). Pasta tub or hot noodles. Ginger."},
+    {id:"cp8",t:"CP8 Perisher Ski Tube",gear:"Night kit on: headlamp, vest, beanie, gloves, thermal or fleece.",food:"Switch to Näak (2 serves). Caffeinated gel, soy/pea milk, potatoes, flat Coke."},
+    {id:"cp9",t:"CP9 Bullocks Flat II · Joel joins",gear:"Poles to Dan. Check headlamp battery and warm layers.",food:"Näak (3 serves). Pasta or noodles, soy hot chocolate, flat Coke, caffeinated gel for ~22:30."},
+    {id:"cp11",t:"CP11 Keller Plaza",gear:"Poles here if missed at CP9. Fresh battery, warm layer, vest on.",food:"Näak (2 serves). Flat Coke, potatoes. Caffeinated gel only if fading."},
     {id:"fin",t:"Finish",gear:"Warm dry clothes, down jacket, slides.",food:"Protein shake, bagel or noodles, fluids."}
   ];
   var LISTS={
